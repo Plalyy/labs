@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, itial-scale=1.0">
+    <title>problem</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="SubmitProblem()">Submit</button>
+        <div class="judge" v-show="this.submitStatus==true">
+            <div class="problem">A</div>
+            <div id="status" class="status">
+            </div>
+        </div>
+    </div>
+    <style>
+        .judge {
+            margin-top: 20px;
+            display: flex;
+            background-color: grey;
+            width: 200px;
+            height: 30px;
+        }
+        .problem {
+            width: 50px;
+            text-align: center;
+            justify-content: center;
+            border-right:1px solid #51b8b8;
+            background-color: #51b8b8;
+            line-height: 30px;
+        }
+        .status {
+            background-color: green;
+            line-height: 30px;
+            /* width: 150px; */
+        }
+        .in {
+            background-color: green;
+            width: 10px
+        }
+    </style>
+    <script>
+        const { createApp } = Vue
+
+        createApp({
+            data() {
+                return {
+                    submitStatus: true,
+                    in: 10
+                }
+            },
+            mounted() {
+                var div = document.getElementById("status")
+                if(div.style.width != "150px") {
+                    div.style.width = 100 + "px"
+                        console.log("set")
+                        $(".status").load(location.href + " .status");
+                        sleep(1000)
+                }
+            },
+            methods: {
+                SubmitProblem() {
+                    this.submitStatus = true
+                    var div = document.getElementById("status")
+                    // var a = [20, 20, 30, 10, 30, 10, 10]
+                    // sum = 0
+                    // var sleep = function(time) {
+                    //     var timeOut = new Date().getTime() + parseInt(time, 10);
+                    //     while(new Date().getTime() <= timeOut) {}
+                    // };
+
+                    // for(i=0;i<7;i++) {
+                    //     sum += a[i]
+                    //     div.style.width = sum + "px"
+                    //     console.log("set")
+                    //     $(".status").load(location.href + " .status");
+                    //     sleep(1000)
+                    // }
+                },
+                judging() {
+                    
+                }
+            },
+        }).mount('#app')
+    </script>
+</body>
+</html>
