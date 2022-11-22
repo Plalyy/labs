@@ -1,90 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, itial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, itial-scale=1.0" />
     <title>problem</title>
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-</head>
-<body>
-    <div id="app">
-        <button @click="SubmitProblem()">Submit</button>
-        <div class="judge" v-show="this.submitStatus==true">
-            <div class="problem">A</div>
-            <div id="status" class="status">
-            </div>
-        </div>
-    </div>
+    <script src="res/function.js"></script>
     <style>
-        .judge {
-            margin-top: 20px;
-            display: flex;
-            background-color: grey;
-            width: 200px;
-            height: 30px;
-        }
-        .problem {
-            width: 50px;
-            text-align: center;
-            justify-content: center;
-            border-right:1px solid #51b8b8;
-            background-color: #51b8b8;
-            line-height: 30px;
-        }
-        .status {
-            background-color: green;
-            line-height: 30px;
-            /* width: 150px; */
-        }
-        .in {
-            background-color: green;
-            width: 10px
-        }
+      * {
+        border: 0;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        font-size: calc(16px + (24 - 16) * (100vw - 320px) / (1280 - 320));
+      }
+
+      body {
+        background-color: #1f1f1f;
+        height: 100vh;
+        display: grid;
+        place-items: center;
+      }
+
+      .progress-clock {
+        display: grid;
+        justify-content: center;
+        align-content: center;
+        position: relative;
+        text-align: center;
+        width: 16em;
+        height: 16em;
+      }
+
+      .progress-clock__rings {
+        display: block;
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      .progress-clock__ring {
+        opacity: 0.1;
+      }
+
+      .progress-clock__ring-fill {
+        transition: opacity 0s 0.3s linear, stroke-dashoffset 0.3s ease-in-out;
+      }
+
+      .progress-clock__ring-fill--360 {
+        opacity: 0;
+        stroke-dashoffset: 0;
+        transition-duration: 0.3s;
+      }
+
+      li {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
     </style>
-    <script>
-        const { createApp } = Vue
-
-        createApp({
-            data() {
-                return {
-                    submitStatus: true,
-                    in: 10
-                }
-            },
-            mounted() {
-                var div = document.getElementById("status")
-                if(div.style.width != "150px") {
-                    div.style.width = 100 + "px"
-                        console.log("set")
-                        $(".status").load(location.href + " .status");
-                        sleep(1000)
-                }
-            },
-            methods: {
-                SubmitProblem() {
-                    this.submitStatus = true
-                    var div = document.getElementById("status")
-                    // var a = [20, 20, 30, 10, 30, 10, 10]
-                    // sum = 0
-                    // var sleep = function(time) {
-                    //     var timeOut = new Date().getTime() + parseInt(time, 10);
-                    //     while(new Date().getTime() <= timeOut) {}
-                    // };
-
-                    // for(i=0;i<7;i++) {
-                    //     sum += a[i]
-                    //     div.style.width = sum + "px"
-                    //     console.log("set")
-                    //     $(".status").load(location.href + " .status");
-                    //     sleep(1000)
-                    // }
-                },
-                judging() {
-                    
-                }
-            },
-        }).mount('#app')
-    </script>
-</body>
+  </head>
+  <body>
+    <div id="app" class="progress-clock">
+      <ul>
+        <li>
+          <svg
+            class="progress-clock__rings"
+            width="256"
+            height="256"
+            viewBox="0 0 256 256"
+          >
+            <defs>
+              <linearGradient id="pc-purple" x1="1" y1="0.5" x2="0" y2="0.5">
+                <stop offset="0%" stop-color="hsl(283,90%,55%)" />
+                <stop offset="100%" stop-color="hsl(263,90%,55%)" />
+              </linearGradient>
+            </defs>
+            <g>
+              <circle
+                class="progress-clock__ring"
+                cx="128"
+                cy="128"
+                r="122"
+                fill="none"
+                opacity="0.1"
+                stroke="url(#pc-purple)"
+                stroke-width="12"
+              />
+              <circle
+                class="progress-clock__ring-fill"
+                data-ring="m"
+                cx="128"
+                cy="128"
+                r="122"
+                fill="none"
+                stroke="url(#pc-purple)"
+                stroke-width="12"
+                stroke-dasharray="766.5 766.5"
+                stroke-dashoffset="766.5"
+                stroke-linecap="round"
+                transform="rotate(-90,128,128)"
+              />
+            </g>
+          </svg>
+        </li>
+        <li>
+          <svg
+            class="progress-clock__rings"
+            width="256"
+            height="256"
+            viewBox="0 0 256 256"
+          >
+            <defs>
+              <linearGradient id="pc-purple" x1="1" y1="0.5" x2="0" y2="0.5">
+                <stop offset="0%" stop-color="hsl(283,90%,55%)" />
+                <stop offset="100%" stop-color="hsl(263,90%,55%)" />
+              </linearGradient>
+            </defs>
+            <g>
+              <circle
+                class="progress-clock__ring"
+                cx="128"
+                cy="128"
+                r="122"
+                fill="none"
+                opacity="0.1"
+                stroke="url(#pc-purple)"
+                stroke-width="12"
+              />
+              <circle
+                class="progress-clock__ring-fill"
+                data-ring="mm"
+                cx="128"
+                cy="128"
+                r="122"
+                fill="none"
+                stroke="url(#pc-purple)"
+                stroke-width="12"
+                stroke-dasharray="766.5 766.5"
+                stroke-dashoffset="766.5"
+                stroke-linecap="round"
+                transform="rotate(-90,128,128)"
+              />
+            </g>
+          </svg>
+        </li>
+      </ul>
+    </div>
+    <script></script>
+  </body>
 </html>
