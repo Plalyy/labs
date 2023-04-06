@@ -1,11 +1,9 @@
 # Plalyy labs
 
-Mainly focus on some trick things, has:
+Processing:
+- 6.824
+    - course about distributed system
 
-## Flatbread
-
-A list 
-
-## Play format
-
-format tool
+Done:
+- clock trick
+    - html/js/css, display time clock
